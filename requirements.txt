@@ -1,0 +1,16 @@
+# Gatinho CLI — dependencias
+#
+# Instale SEMPRE com --ignore-installed:
+#     venv/bin/pip install --ignore-installed -r requirements.txt
+# O venv usa --system-site-packages (para reaproveitar torch/CUDA do pyenv sem
+# rebaixar 3 GB). O efeito colateral e que o pip enxerga os pacotes do sistema,
+# responde "already satisfied" e deixa o venv vazio — o projeto passa a depender
+# do python global sem ninguem perceber. Foi o que aconteceu aqui em 2026-08-17.
+#
+# Versoes fixadas = as que rodaram verde (76 testes · auditoria · 6 mutacoes).
+prompt_toolkit==3.0.53     # input com autocomplete no terminal
+rich==15.0.0               # desenho do terminal
+pytest==9.1.1              # a suite de testes
+#
+# O resto e biblioteca padrao: http.server, urllib, json, ast, threading.
+# llama.cpp entra por binario, ligado em servidor/bin/ — nao e pacote python.

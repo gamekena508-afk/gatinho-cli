@@ -1,0 +1,9 @@
+venv/
+works/
+servidor/logs/
+servidor/modelos/*.gguf
+servidor/bin/
+.contract-backup/
+__pycache__/
+*.pyc
+.pytest_cache/

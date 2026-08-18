@@ -1,0 +1,24 @@
+{
+  "provedores": [
+    {"nome": "local", "tipo": "openai-compatible", "base_url": "http://127.0.0.1:8099", "chave_env": "", "ativo": true},
+    {"nome": "llamacpp", "tipo": "openai-compatible", "base_url": "http://127.0.0.1:8080", "chave_env": "", "ativo": true},
+    {"nome": "openrouter", "tipo": "openai-compatible", "base_url": "https://openrouter.ai/api/v1", "chave_env": "OPENROUTER_API_KEY", "ativo": true}
+  ],
+  "modelos": [
+    {"id": "deltacoder-9b", "provider": "local", "nome": "DeltaCoder 9B v1.1 DPO",
+     "arquivo": "DeltaCoder-9B-v1.1-DPO-Q4_K_M.gguf",
+     "cap": {"supports_tools": true, "supports_reasoning_effort": false, "max_context": 32768, "max_output": 4096}},
+    {"id": "qwen35-9b-oficial", "provider": "local", "nome": "Qwen3.5 9B oficial",
+     "arquivo": "Qwen3.5-9B-Q4_1.gguf",
+     "cap": {"supports_tools": true, "supports_reasoning_effort": true, "max_context": 32768, "max_output": 4096}},
+    {"id": "omnicoder-9b", "provider": "local", "nome": "OmniCoder 9B",
+     "arquivo": "omnicoder-9b-q4_k_m.gguf",
+     "cap": {"supports_tools": true, "supports_reasoning_effort": false, "max_context": 32768, "max_output": 4096}},
+    {"id": "gemma4-12b-it", "provider": "local", "nome": "Gemma 4 12B IT",
+     "arquivo": "gemma-4-12b-it-Q4_K_M.gguf",
+     "cap": {"supports_tools": true, "supports_reasoning_effort": false, "max_context": 32768, "max_output": 4096}},
+    {"id": "glm46v-flash", "provider": "local", "nome": "GLM 4.6V Flash",
+     "arquivo": "GLM-4.6V-Flash-Q4_K_S.gguf",
+     "cap": {"supports_tools": true, "supports_reasoning_effort": false, "max_context": 16384, "max_output": 2048}}
+  ]
+}
