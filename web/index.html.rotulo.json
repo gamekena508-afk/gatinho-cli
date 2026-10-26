@@ -1,0 +1,23 @@
+{
+  "schema": "pc-media-label-v1",
+  "arquivo": "index.html",
+  "caminho": "/home/julianshin/Documentos/automatização/gatinho-cli/web/index.html",
+  "caminho_bytes_b64": "L2hvbWUvanVsaWFuc2hpbi9Eb2N1bWVudG9zL2F1dG9tYXRpemHDp8Ojby9nYXRpbmhvLWNsaS93ZWIvaW5kZXguaHRtbA==",
+  "extensao": ".html",
+  "categoria": "html",
+  "tamanho_bytes": 41516,
+  "modificado_em": "2026-08-18T10:47:53.162266+00:00",
+  "rotulado_em": "2026-09-11T11:33:28.581516+00:00",
+  "status": "complete",
+  "fingerprint_rapido": "41516:e22ba02156999b5fed4e7bef3a03642f33b0ec6a74ca404f4db5e3275af8323e",
+  "conteudo_extraido": {
+    "titulo": "GATINHO CLI — v0.1.0",
+    "meta_description": "",
+    "cabecalhos": [],
+    "links": 0,
+    "imagens": 2,
+    "texto_extraido": "GATINHO CLI — v0.1.0 avatar: imagem · [V] varia · [C] oculta 🐱 variar [V] 👁 gato [C] 📊 stats [S] assistente de código. focado. rápido. curioso. Tipo: agente de código Modo: Permissões: Descrição: PLANEJAMENTO FULL ACESSO ● PEDIR PERMISSÃO GATINHO CLI PLAN FULL PERM ■ parar ◀ início modo: — verificando… ⏱ 0.0s tokens 0/16K modelo: deltacoder-9b gatinho> | ▮ [Dica] / comandos | Ctrl+L limpar | /modo plan·full·perm | no PLANO responda sim p/ implementar v0.1.0",
+    "texto_truncado": false
+  },
+  "descricao": "Página HTML \"GATINHO CLI — v0.1.0\". Cabeçalhos principais: não detectados. "
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "pc-media-label-v1",
+  "arquivo": "gatinho.png",
+  "caminho": "/home/julianshin/Documentos/automatização/gatinho-cli/web/assets/gatinho.png",
+  "caminho_bytes_b64": "L2hvbWUvanVsaWFuc2hpbi9Eb2N1bWVudG9zL2F1dG9tYXRpemHDp8Ojby9nYXRpbmhvLWNsaS93ZWIvYXNzZXRzL2dhdGluaG8ucG5n",
+  "extensao": ".png",
+  "categoria": "image",
+  "tamanho_bytes": 4566,
+  "modificado_em": "2026-08-17T22:00:39.601506+00:00",
+  "rotulado_em": "2026-09-11T11:22:06.702724+00:00",
+  "status": "pending_enrichment"
+}

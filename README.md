@@ -26,9 +26,10 @@ gatinho-cli/
 │   ├── servidor.py     HTTP + SSE: a ponte navegador ↔ motor
 │   ├── runtime.py      planeja, roteia, executa, mede
 │   ├── roteador.py     V3.1 — escolhe fast-coder ou mast-agent
+│   ├── motor.py        dono do llama-server: sobe, derruba e TROCA de modelo
 │   ├── sandbox.py      works/ — uma pasta por sessão
 │   ├── i18n.py         detecta idioma e traduz (pt · en · es · zh)
-│   ├── comandos.py     registro central dos /comandos
+│   ├── comandos.py     registro central dos /comandos (a paleta da web le daqui)
 │   ├── handlers.py     um handler por comando (58 comandos)
 │   ├── sessao.py       persistência e compactação
 │   ├── config.py       configuração em 4 camadas
@@ -40,7 +41,7 @@ gatinho-cli/
 │
 ├── servidor/           llama.cpp e modelos, organizados
 │   ├── bin/            llama-server, llama-cli, llama-bench (links)
-│   ├── modelos/        36 GGUF por link simbólico — 0 bytes duplicados
+│   ├── modelos/        os .gguf de verdade + README com o que baixar
 │   └── logs/           modelo.log e web.log
 │
 ├── web/                a interface oficial
@@ -49,7 +50,7 @@ gatinho-cli/
 │   └── assets/         a arte do gato
 │
 ├── works/              ← o agente trabalha AQUI, uma pasta por sessão
-├── testes/             76 testes + o provador de mutação + a auditoria
+├── testes/             83 testes + o provador de mutação + as duas auditorias
 └── bin/gatinho         o executável
 ```
 
@@ -75,6 +76,31 @@ jeitos, e sim por **de onde o módulo resolve**.
 
 A auditoria cobra o mesmo invariante, e ele sabe reprovar: escondendo o `rich` do
 venv, ela acusa `rich /home/julianshin/.pyenv/…` e devolve 1 invariante violado.
+
+---
+
+## Modelos e a troca de modelo
+
+Os `.gguf` ficam em `servidor/modelos/`, **arquivo real** — não atalho, não cópia.
+O `.gitignore` barra `*.gguf`, então o repositório sobe leve; o
+[README de lá](servidor/modelos/README.md) diz o que baixar.
+
+`/model` abre o seletor e **troca o modelo de verdade**: derruba o `llama-server`,
+sobe outro com o novo arquivo e só confirma depois de perguntar qual arquivo está
+carregado. Isso importa porque `/health` respondendo `ok` não prova nada — num
+benchmark meu, um servidor esquecido segurando a porta fez 29 medições rodarem
+contra o modelo errado sem ninguém notar.
+
+Três coisas que o comando se recusa a fazer, e cada uma tem teste:
+
+- derrubar um `llama-server` que este projeto não subiu;
+- dizer "modelo alterado" quando a troca falhou — a configuração volta ao anterior;
+- ficar com o estado divergindo do motor: ao subir, quem manda é o arquivo servido.
+
+A paleta de `/` na web vem de `GET /api/comandos`, o registro real. Antes era uma
+lista escrita à mão com 8 nomes, três inexistentes, enquanto 50 comandos reais —
+inclusive `/model` — não apareciam. Os apelidos em português funcionam:
+`/modelo`, `/limpar`, `/modo`, `/ajuda`, `/ferramentas`, `/sair`.
 
 ---
 
@@ -161,9 +187,10 @@ já produziu um diagnóstico errado num benchmark: um modelo *pediu* 139 ações
 ## Testes
 
 ```bash
-venv/bin/python -m pytest testes/ -q     # 76 testes
+venv/bin/python -m pytest testes/ -q     # 83 testes
 venv/bin/python testes/provar_suite.py   # prova que a suíte sabe REPROVAR
-venv/bin/python testes/auditoria.py      # roda os 58 comandos + invariantes
+venv/bin/python testes/auditoria.py      # os 58 comandos + invariantes
+venv/bin/python testes/auditar_web.py    # os mesmos comandos pelo HTTP, como a web faz
 ```
 
 O segundo importa mais: quebra o código de propósito em 6 pontos e cobra que a suíte

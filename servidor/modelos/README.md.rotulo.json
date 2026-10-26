@@ -1,0 +1,27 @@
+{
+  "schema": "pc-media-label-v1",
+  "arquivo": "README.md",
+  "caminho": "/home/julianshin/Documentos/automatização/gatinho-cli/servidor/modelos/README.md",
+  "caminho_bytes_b64": "L2hvbWUvanVsaWFuc2hpbi9Eb2N1bWVudG9zL2F1dG9tYXRpemHDp8Ojby9nYXRpbmhvLWNsaS9zZXJ2aWRvci9tb2RlbG9zL1JFQURNRS5tZA==",
+  "extensao": ".md",
+  "categoria": "doc",
+  "tamanho_bytes": 3169,
+  "modificado_em": "2026-08-18T10:38:49.894118+00:00",
+  "rotulado_em": "2026-09-11T11:33:28.578327+00:00",
+  "status": "complete",
+  "fingerprint_rapido": "3169:0dd4bad6cd633f2a3c7c4f59717e8210d9067507ccbf212fcefb9f167c24f365",
+  "conteudo_extraido": {
+    "linhas_na_amostra": 46,
+    "cabecalhos": [
+      "# Modelos",
+      "# escolha um dos três abaixo e baixe só o arquivo Q4_K_M",
+      "## Três que rodam bem no Gatinho",
+      "### Baixando",
+      "## Usando",
+      "## Quantização"
+    ],
+    "texto_extraido": "# Modelos\n\nOs `.gguf` moram **aqui**, arquivo real — não atalho, não cópia.\n\nO `.gitignore` barra `servidor/modelos/*.gguf`, então o repositório sobe leve e você\nbaixa o que quiser nesta pasta. Nada mais precisa ser configurado: o Gatinho varre\neste diretório na inicialização e tudo que estiver aqui aparece em `/model`.\n\n```bash\ncd servidor/modelos\n# escolha um dos três abaixo e baixe só o arquivo Q4_K_M\n```\n\n---\n\n## Três que rodam bem no Gatinho\n\nTodos são de 9B, cabem em **~5,5 GB** em `Q4_K_M` e rodam em GPU de 8 GB com\n`-ngl 99`. A janela padrão do projeto é 16K (`CTX=32768 ./gatinho.sh` aumenta).\n\n| Modelo | Arquivo | Tamanho | Onde baixar |\n|---|---|---:|---|\n| **OmniCoder-9B** — o padrão sugerido; segue instrução de ferramenta com disciplina, que é o que um agente de código precisa | `omnicoder-9b-q4_k_m.gguf` | ~5,4 GB | [Tesslate/OmniCoder-9B-GGUF](https://huggingface.co/Tesslate/OmniCoder-9B-GGUF) · [pesos originais](https://huggingface.co/Tesslate/OmniCoder-9B) |\n| **Qwen3.5-9B Opus Distill v2** — melhor de raciocínio; escreve código mais elaborado, e às vezes elabora demais | `Qwen3.5-9B-Opus-Distill-v2-Q4_K_M.gguf` | ~5,3 GB | [Jackrong/…Opus-Reasoning-Distilled-v2-GGUF](https://huggingface.co/Jackrong/Qwen3.5-9B-Claude-4.6-Opus-Reasoning-Distilled-v2-GGUF) |\n| **DeepSeek-V4-Pro-Qwen3.5-9B MTP** — o mais leve de exigência; bom para tarefa curta e resposta rápida | `DeepSeek-V4-Pro-Qwen3.5-9B-MTP-Q4_K_M.gguf` | ~5,4 GB | [Jackrong/DeepSeek-V4-Pro-Qwen3.5-9B-MTP-GGUF](https://huggingface.co/Jackrong/DeepSeek-V4-Pro-Qwen3.5-9B-MTP-GGUF) |\n\nOs três são recomendação de uso, **não um ranking**. A avaliação comparativa que\noriginou a escolha é trabalho próprio e não faz parte deste repositório — não há\nnotas, tabela de posições nem tarefas de teste publicados aqui.\n\n### Baixando\n\n`huggingface-cli` pega só o arquivo que interessa, sem clonar o repositório inteiro:\n\n```bash\npip install -U \"huggingface_hub[cli]\"\nhuggingface-cli download Tesslate/OmniCoder-9B-GGUF \\\n  --include \"*Q4_K_M.gguf\" --local-dir .\n```\n\nSem a CLI, `wget -c` no link direto resolve — e o `-c` importa: link assinado de CDN\nexpira no meio do download, e sem continuação você recomeça do zero.\n\n---\n\n## Usando\n\n```bash\n./gatinho.sh                                  # sobe o primeiro .gguf que encontrar\nMODELO=omnicoder ./gatinho.sh                 # escolhe por pedaço do nome\nCTX=32768 ./gatinho.sh                        # janela maior\n```\n\nNa interface, `/models` lista o que está nesta pasta e `/model` abre o seletor.\nTrocar por ali **reinicia o llama-server** com o novo arquivo e só confirma depois\nde perguntar ao servidor qual arquivo ele está servindo — `/health` respondendo `ok`\nnão prova qual modelo está carregado, e confiar nisso já produziu uma bateria\ninteira de medições contra o modelo errado.\n\n## Quantização\n\n`Q4_K_M` é o ponto de equilíbrio para estes 9B: cabe em 8 GB de VRAM e mantém a\nqualidade de código. `Q5_K_M` e `Q6_K` melhoram um pouco e custam 1–2 GB a mais.\nAbaixo de `Q4` a qualidade cai rápido — vale experimentar em texto, não em código.",
+    "texto_truncado": false
+  },
+  "descricao": "Documento .md. Cabeçalhos: # Modelos, # escolha um dos três abaixo e baixe só o arquivo Q4_K_M, ## Três que rodam bem no Gatinho, ### Baixando, ## Usando."
+}

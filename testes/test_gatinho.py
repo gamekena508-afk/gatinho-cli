@@ -813,3 +813,25 @@ def test_troca_que_falha_nao_deixa_a_config_mentindo(ctx, tmp_path, monkeypatch)
     r = roda(ctx, "/model qwen35-9b-oficial")
     assert r.erro
     assert ctx.modelo() == antes, "config ficou apontando para um modelo que nao subiu"
+
+
+def test_sigterm_derruba_o_motor_e_nao_deixa_orfao(monkeypatch):
+    """SIGTERM tem que passar pelo encerramento; atexit sozinho nao roda em SIGTERM.
+
+    Defeito medido em 2026-08-18: apos um /model, o llama-server vivo era o que o
+    motor.py subiu. O Ctrl+C matava o resto e ele ficava segurando 5,6 GB de VRAM —
+    o ./gatinho.sh seguinte falhava com "failed to load model".
+    """
+    import signal as sg
+    from gatinho import motor
+    mortos = []
+    monkeypatch.setattr(motor, "_PID", 424242)
+    monkeypatch.setattr(motor, "_vivo", lambda p: True)
+    monkeypatch.setattr(motor.os, "kill", lambda p, s: mortos.append((p, s)))
+    motor.instalar_encerramento()
+    tratador = sg.getsignal(sg.SIGTERM)
+    assert callable(tratador), "SIGTERM continuou no tratador padrao — atexit nao roda"
+    with pytest.raises(SystemExit):
+        tratador(sg.SIGTERM, None)
+    assert (424242, sg.SIGTERM) in mortos, "o motor nao foi derrubado no sinal"
+    sg.signal(sg.SIGTERM, sg.SIG_DFL)

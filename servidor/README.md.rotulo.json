@@ -1,0 +1,26 @@
+{
+  "schema": "pc-media-label-v1",
+  "arquivo": "README.md",
+  "caminho": "/home/julianshin/Documentos/automatização/gatinho-cli/servidor/README.md",
+  "caminho_bytes_b64": "L2hvbWUvanVsaWFuc2hpbi9Eb2N1bWVudG9zL2F1dG9tYXRpemHDp8Ojby9nYXRpbmhvLWNsaS9zZXJ2aWRvci9SRUFETUUubWQ=",
+  "extensao": ".md",
+  "categoria": "doc",
+  "tamanho_bytes": 1055,
+  "modificado_em": "2026-08-17T22:54:32.932036+00:00",
+  "rotulado_em": "2026-09-11T11:33:28.576906+00:00",
+  "status": "complete",
+  "fingerprint_rapido": "1055:08afc1a2689547d5098ca94c79257a7c77f109bc47380e33fffaa42008d92921",
+  "conteudo_extraido": {
+    "linhas_na_amostra": 23,
+    "cabecalhos": [
+      "# servidor/ — llama.cpp e modelos",
+      "## Por que link simbolico e nao copia",
+      "# ligar um modelo novo que apareceu la",
+      "# trocar o binario do llama.cpp (ex.: uma build propria)",
+      "## Subir na mao (o gatinho.sh faz isso sozinho)"
+    ],
+    "texto_extraido": "# servidor/ — llama.cpp e modelos\n\n```\nbin/       llama-server, llama-cli, llama-bench  (links para /usr/bin)\nmodelos/   36 GGUF por link simbolico            (0 bytes duplicados)\nlogs/      modelo.log  ·  web.log\n```\n\n## Por que link simbolico e nao copia\n\nOs GGUF do Pai somam ~200 GB em `/home/julianshin/Documentos/llm-models`.\nCopiar para dentro do projeto duplicaria isso sem ganho nenhum. O link deixa a\npasta organizada e o disco em paz.\n\n```bash\n# ligar um modelo novo que apareceu la\nln -s /home/julianshin/Documentos/llm-models/NOVO.gguf servidor/modelos/\n\n# trocar o binario do llama.cpp (ex.: uma build propria)\nln -sf /caminho/da/minha/build/llama-server servidor/bin/llama-server\n```\n\n## Subir na mao (o gatinho.sh faz isso sozinho)\n\n```bash\nservidor/bin/llama-server -m servidor/modelos/<modelo>.gguf \\\n  -ngl 99 -c 16384 --host 127.0.0.1 --port 8099 --jinja --flash-attn on\n```\n\n`-ngl 99` joga tudo na GPU. Numa RTX 3060 de 12 GB, modelo de 9B em Q4 cabe com\njanela de 16K. Passando disso, o llama.cpp derrama para a RAM e fica lento.",
+    "texto_truncado": false
+  },
+  "descricao": "Documento .md. Cabeçalhos: # servidor/ — llama.cpp e modelos, ## Por que link simbolico e nao copia, # ligar um modelo novo que apareceu la, # trocar o binario do llama.cpp (ex.: uma build propria), ## Subir na mao (o gatinho.sh faz isso sozinho)."
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "pc-media-label-v1",
+  "arquivo": "requirements.txt",
+  "caminho": "/home/julianshin/Documentos/automatização/gatinho-cli/requirements.txt",
+  "caminho_bytes_b64": "L2hvbWUvanVsaWFuc2hpbi9Eb2N1bWVudG9zL2F1dG9tYXRpemHDp8Ojby9nYXRpbmhvLWNsaS9yZXF1aXJlbWVudHMudHh0",
+  "extensao": ".txt",
+  "categoria": "doc",
+  "tamanho_bytes": 862,
+  "modificado_em": "2026-08-18T10:20:23.143631+00:00",
+  "rotulado_em": "2026-09-11T11:33:28.575402+00:00",
+  "status": "complete",
+  "fingerprint_rapido": "862:6db91f154495ebe7bd3244d6408181eb36cc88c3922f9c7fb2508f34b3d8fd22",
+  "conteudo_extraido": {
+    "linhas_na_amostra": 16,
+    "cabecalhos": [
+      "# Gatinho CLI — dependencias",
+      "#",
+      "# Instale SEMPRE com --ignore-installed:",
+      "#     venv/bin/pip install --ignore-installed -r requirements.txt",
+      "# O venv usa --system-site-packages (para reaproveitar torch/CUDA do pyenv sem",
+      "# rebaixar 3 GB). O efeito colateral e que o pip enxerga os pacotes do sistema,",
+      "# responde \"already satisfied\" e deixa o venv vazio — o projeto passa a depender",
+      "# do python global sem ninguem perceber. Foi o que aconteceu aqui em 2026-08-17.",
+      "#",
+      "# Versoes fixadas = as que rodaram verde (76 testes · auditoria · 6 mutacoes).",
+      "#",
+      "# O resto e biblioteca padrao: http.server, urllib, json, ast, threading.",
+      "# llama.cpp entra por binario, ligado em servidor/bin/ — nao e pacote python."
+    ],
+    "texto_extraido": "# Gatinho CLI — dependencias\n#\n# Instale SEMPRE com --ignore-installed:\n#     venv/bin/pip install --ignore-installed -r requirements.txt\n# O venv usa --system-site-packages (para reaproveitar torch/CUDA do pyenv sem\n# rebaixar 3 GB). O efeito colateral e que o pip enxerga os pacotes do sistema,\n# responde \"already satisfied\" e deixa o venv vazio — o projeto passa a depender\n# do python global sem ninguem perceber. Foi o que aconteceu aqui em 2026-08-17.\n#\n# Versoes fixadas = as que rodaram verde (76 testes · auditoria · 6 mutacoes).\nprompt_toolkit==3.0.53     # input com autocomplete no terminal\nrich==15.0.0               # desenho do terminal\npytest==9.1.1              # a suite de testes\n#\n# O resto e biblioteca padrao: http.server, urllib, json, ast, threading.\n# llama.cpp entra por binario, ligado em servidor/bin/ — nao e pacote python.",
+    "texto_truncado": false
+  },
+  "descricao": "Documento .txt. Cabeçalhos: # Gatinho CLI — dependencias, #, # Instale SEMPRE com --ignore-installed:, #     venv/bin/pip install --ignore-installed -r requirements.txt, # O venv usa --system-site-packages (para reaproveitar torch/CUDA do pyenv sem."
+}

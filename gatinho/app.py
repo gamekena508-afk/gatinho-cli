@@ -199,6 +199,7 @@ def main(argv=None) -> int:
     if a.serve:
         from . import motor
         from .servidor import servir
+        motor.instalar_encerramento()   # SIGTERM sem isto deixa llama-server orfao
         # o que o motor serve manda sobre o que a config guardou (ver motor.sincronizar)
         sincronizado = motor.sincronizar(ctx)
         srv = servir(ctx, porta=a.porta)

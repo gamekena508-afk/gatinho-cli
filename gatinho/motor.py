@@ -201,6 +201,26 @@ def _saida():
             pass
 
 
+def instalar_encerramento():
+    """Faz SIGTERM/SIGINT passarem pelo atexit — senao o motor fica orfao.
+
+    Defeito medido em 2026-08-18: depois de um /model, quem estava servindo era o
+    processo que ESTE modulo subiu, nao o que o gatinho.sh conhecia. O Ctrl+C matava
+    o gatinho.sh e o servidor web, e o llama-server ficava vivo segurando 5,6 GB de
+    VRAM — a ponto de o proximo ./gatinho.sh nao conseguir carregar modelo nenhum
+    ("failed to load model"). `atexit` sozinho nao resolve: o Python NAO executa os
+    handlers de atexit quando morre por SIGTERM. Tem que converter o sinal em saida.
+    """
+    def _ao_sinal(signum, _frame):
+        _saida()
+        raise SystemExit(128 + signum)
+    for s in (signal.SIGTERM, signal.SIGINT, signal.SIGHUP):
+        try:
+            signal.signal(s, _ao_sinal)
+        except (ValueError, OSError):
+            pass    # fora da thread principal: o atexit ainda cobre a saida normal
+
+
 def sincronizar(ctx) -> str:
     """Faz a config concordar com o que o motor esta REALMENTE servindo.
 
